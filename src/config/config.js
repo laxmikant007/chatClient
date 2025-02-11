@@ -1,2 +1,4 @@
 
-export const BACKEND_URL = "http://localhost:3000/api";
+// export const BACKEND_URL = "https://netscap-server-chat.vercel.app";
+
+export const BACKEND_URL = "https://chatnetscape-api.onrender.com"

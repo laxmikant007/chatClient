@@ -3,6 +3,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
+import { BACKEND_URL } from '../config/config';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +24,7 @@ const Login = () => {
     e.preventDefault();
     try {
         console.log("this is formData", formData);
-      const response = await axios.post('http://localhost:3000/api/login', formData);
+      const response = await axios.post(`${BACKEND_URL}/api/login`, formData);
         console.log("this is response",response.data);
       if(response.data.status === 1) {
         toast.success(response.data.message);

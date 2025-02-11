@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import io from 'socket.io-client';
 import { Button, Badge } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { BACKEND_URL } from '../config/config';
 
 const Chat = () => {
   // State management for messages, users, and current chat
@@ -40,7 +41,7 @@ const Chat = () => {
     }
 
     // Initialize socket connection
-    socketRef.current = io('http://localhost:3000', {
+    socketRef.current = io(BACKEND_URL, {
       reconnection: true,
       reconnectionAttempts: 5,
       reconnectionDelay: 1000
@@ -116,7 +117,7 @@ const Chat = () => {
     try {
       if (!currentUser?._id) return;
       
-      const response = await fetch(`http://localhost:3000/api/unread-count/${currentUser._id}`);
+      const response = await fetch(`${BACKEND_URL}/api/unread-count/${currentUser._id}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -135,7 +136,7 @@ const Chat = () => {
     try {
       if (!currentUser?._id || !userId) return;
 
-      const response = await fetch(`http://localhost:3000/api/messages/${currentUser._id}/${userId}`);
+      const response = await fetch(`${BACKEND_URL}/api/messages/${currentUser._id}/${userId}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

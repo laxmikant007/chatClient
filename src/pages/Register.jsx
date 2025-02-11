@@ -70,7 +70,7 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/register`, formData);
+      const response = await axios.post(`${BACKEND_URL}/api/register`, formData);
       if(response.data.status === 1) {
         toast.success(response.data.message);
         navigate('/login');
@@ -131,8 +131,15 @@ const Register = () => {
                   />
                   {errors.password && <div className="invalid-feedback">{errors.password}</div>}
                 </div>
-                <button type="submit" className="btn btn-primary w-100">
+                <button type="submit" className="btn btn-primary w-100 mb-3">
                   Register
+                </button>
+                <button 
+                  type="button" 
+                  className="btn btn-outline-primary w-100"
+                  onClick={() => navigate('/login')}
+                >
+                  Already have an account? Login
                 </button>
               </form>
             </div>
